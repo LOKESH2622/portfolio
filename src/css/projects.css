@@ -1,0 +1,129 @@
+/* ==================== PROJECTS SECTION STYLES ==================== */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+    padding: 1.5rem 1rem;
+}
+
+@media (min-width: 480px) {
+    .projects-grid {
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem;
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        padding: 3rem 3rem;
+    }
+}
+
+.project-card {
+    border: 1px solid rgba(147, 112, 219, 0.3);
+    background: rgba(20, 20, 30, 0.5);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: #9370db;
+    box-shadow: 0 10px 30px rgba(147, 112, 219, 0.2);
+}
+
+.project-image {
+    width: 100%;
+    height: clamp(150px, 40vw, 250px);
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .project-image {
+        height: 200px;
+    }
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-tags {
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #b0b0c0;
+    border-bottom: 1px solid rgba(147, 112, 219, 0.3);
+    background: rgba(147, 112, 219, 0.05);
+}
+
+.project-info {
+    padding: 16px;
+}
+
+.project-info h3 {
+    color: #fff;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.project-info p {
+    color: #b0b0c0;
+    font-size: clamp(0.8125rem, 2vw, 0.875rem);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.project-buttons {
+    display: flex;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+}
+
+.project-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #9370db;
+    color: #fff;
+    text-decoration: none;
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+    transition: all 0.3s ease;
+    background: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 70px;
+    text-align: center;
+}
+
+.project-btn:hover {
+    background: #9370db;
+    color: #1a1a2e;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (min-width: 480px) {
+    .project-btn {
+        font-size: clamp(0.8125rem, 1.5vw, 1rem);
+    }
+}

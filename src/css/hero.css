@@ -1,0 +1,447 @@
+/* ==================== HERO SECTION STYLES ==================== */
+
+.hero {
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    gap: 1.5rem;
+    overflow: visible;
+    padding: 1.5rem 1rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 480px) {
+    .hero {
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.5rem 2rem;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        padding: 3rem 3rem;
+        gap: 3rem;
+        margin-bottom: 5rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .hero {
+        padding: 4rem 6rem;
+        gap: 4rem;
+    }
+}
+
+.hero-content-container {
+    flex: 1;
+    width: 100%;
+}
+
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    text-align: left;
+}
+
+@media (min-width: 768px) {
+    .hero-content {
+        text-align: left;
+        width: auto;
+    }
+}
+
+.hero-content h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    color: #fff;
+    margin-top: 0;
+}
+
+.hero-content h1 .name {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    color: #fff;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* ==================== SCROLLING TEXT STYLES ==================== */
+.scroll-container {
+    border: 2px solid #000000;
+    border-radius: 50px;
+    padding: 0.75rem 1rem;
+    overflow: hidden;
+    max-width: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
+}
+
+@media (min-width: 480px) {
+    .scroll-container {
+        max-width: 90%;
+        padding: 1rem 1.5rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .scroll-container {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.scroll-text {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll 15s linear infinite;
+}
+
+.scroll-text span {
+    color: #ffffff;
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+    font-weight: 600;
+    padding-right: 2rem;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%);
+    }
+}
+
+.scroll-container:hover .scroll-text {
+    animation-play-state: paused;
+}
+
+.hero-content p {
+    color: #b0b0c0;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    margin-bottom: 1.5rem;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 768px) {
+    .hero-content p {
+        max-width: 400px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    width: fit-content;
+}
+
+.hero-content .btn {
+    width: fit-content;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+}
+
+.hero-image {
+    position: relative;
+    width: clamp(200px, 80vw, 400px);
+    height: clamp(250px, 100vw, 500px);
+    flex-shrink: 0;
+    max-width: 100%;
+}
+
+@media (min-width: 480px) {
+    .hero-image {
+        width: clamp(220px, 70vw, 400px);
+        height: clamp(275px, 87.5vw, 500px);
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-image {
+        width: 350px;
+        height: 450px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-image {
+        width: 400px;
+        height: 500px;
+    }
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(50%);
+    border: 2px solid #9370db;
+}
+
+.shape1 {
+    width: 120px;
+    height: 120px;
+    top: -30px;
+    left: -30px;
+}
+
+.shape2 {
+    width: 80px;
+    height: 80px;
+    bottom: -20px;
+    right: -40px;
+}
+
+.dots-top {
+    top: 40%;
+    right: -60px;
+}
+
+.dots-bottom {
+    bottom: 20px;
+    right: -60px;
+}
+
+.status {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(147, 112, 219, 0.2);
+    border: 1px solid #9370db;
+    padding: 10px 20px;
+    font-size: 12px;
+    white-space: nowrap;
+    color: #b0b0c0;
+}
+
+.status::before {
+    content: '■';
+    color: #9370db;
+    margin-right: 8px;
+}
+
+/* ==================== QUOTE SECTION ==================== */
+.quote {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 30%, 1rem;
+    margin-top: 0.50rem;
+}
+
+@media (min-width: 480px) {
+    .quote {
+        padding: 1.25rem 0.75rem;
+        margin-top: 1.25rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .quote {
+        padding: 1.5rem 1rem;
+        margin-top: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .quote {
+        padding: 1.75rem 2rem;
+        margin-top: 2rem;
+    }
+}
+
+.quote blockquote {
+    font-size: clamp(0.85rem, 3vw, 1rem);
+    border: 1px solid rgba(147, 112, 219, 0.4);
+    padding: clamp(0.75rem, 2.5vw, 1.25rem);
+    background: rgba(147, 112, 219, 0.1);
+    margin-bottom: 0.5rem;
+    color: #b0b0c0;
+    border-radius: 8px;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 768px) {
+    .quote blockquote {
+        max-width: 500px;
+    }
+}
+
+.quote cite {
+    font-style: normal;
+    color: #b0b0c0;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+/* ==================== SKILL ICONS NAVIGATION - FIXED BOTTOM ==================== */
+.skill-icons {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 9999 !important;
+    padding: 0.75rem 1rem;
+    border-radius: 50px;
+    background: rgba(70, 70, 85, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(147, 112, 219, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: 90vw;
+    overflow: visible;
+    pointer-events: auto;
+}
+
+@media (min-width: 480px) {
+    .skill-icons {
+        gap: 0.75rem;
+        padding: 1rem 1.25rem;
+        bottom: 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .skill-icons {
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        bottom: 2rem;
+    }
+}
+
+.icon-link {
+    width: clamp(2.5rem, 8vw, 3.125rem);
+    height: clamp(2.5rem, 8vw, 3.125rem);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a8a8bb;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    flex-shrink: 0;
+    text-decoration: none;
+    border: 1.5px solid rgba(147, 112, 219, 0.4);
+    background: rgba(50, 50, 65, 0.5);
+    position: relative;
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+}
+
+@media (min-width: 480px) {
+    .icon-link {
+        width: 3rem;
+        height: 3rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .icon-link {
+        width: 3.125rem;
+        height: 3.125rem;
+    }
+}
+
+.icon-link svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.icon-link svg path,
+.icon-link svg circle,
+.icon-link svg polyline {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.icon-link:hover {
+    color: #1ee6d2;
+    border-color: rgba(30, 230, 210, 0.6);
+    background: rgba(50, 50, 65, 0.7);
+    transform: translateY(-2px);
+}
+
+.icon-link.active {
+    color: #1ee6d2;
+    background: rgba(30, 230, 210, 0.15);
+    border-color: rgba(30, 230, 210, 0.6);
+    box-shadow: 0 0 16px rgba(30, 230, 210, 0.4);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        gap: 40px;
+        min-height: auto;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 300px;
+        height: 350px;
+    }
+
+    .quote {
+        margin: 60px auto;
+    }
+
+    .quote blockquote {
+        font-size: 16px;
+    }
+}

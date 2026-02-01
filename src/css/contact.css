@@ -1,0 +1,324 @@
+/* ==================== CONTACT SECTION STYLES ==================== */
+
+.contact {
+    width: 100%;
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 480px) {
+    .contact {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .contact {
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contact {
+        padding: 3rem 3rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .contact {
+        padding: 3rem 0;
+    }
+}
+
+.contact h2 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: #fff;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 480px) {
+    .contact-content {
+        gap: 2.5rem;
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .contact-content {
+        gap: 3rem;
+        padding: 0 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contact-content {
+        flex-direction: row;
+        gap: 4rem;
+        align-items: stretch;
+        justify-content: center;
+        padding: 0;
+    }
+}
+
+@media (min-width: 1440px) {
+    .contact-content {
+        max-width: 1000px;
+        gap: 6rem;
+    }
+}
+
+.profile-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(20, 20, 30, 0.8) 0%, rgba(40, 30, 60, 0.6) 100%);
+    border: 1px solid rgba(147, 112, 219, 0.3);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .profile-card-wrapper {
+        max-width: 400px;
+        margin: 0;
+    }
+}
+
+.profile-background {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.profile-circle {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    border: 4px solid rgba(147, 112, 219, 0.5);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.profile-details h3 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    color: #fff;
+    margin: 0;
+    font-weight: 700;
+}
+
+.profile-details .title {
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+    color: #b0b0c0;
+    letter-spacing: 3px;
+    margin: -0.5rem 0 0 0;
+    font-weight: 600;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+}
+
+.contact-links p {
+    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    color: #b0b0c0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.contact-icon {
+    color: #9370db;
+    font-weight: bold;
+    min-width: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-links a {
+    color: #b0b0c0;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(147, 112, 219, 0.5);
+    transition: all 0.3s ease;
+}
+
+.contact-links a:hover {
+    color: #9370db;
+    border-bottom-color: #9370db;
+}
+    
+.contact-text {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+.contact-text a {
+    color: #9370db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    word-break: break-word;
+}
+
+.contact-text a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(147, 112, 219, 0.3);
+}
+
+.social-links p {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.social-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.social-list li a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #b0b0c0;
+    text-decoration: none;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+}
+
+.social-list li a:hover {
+    color: #9370db;
+    transform: translateX(5px);
+}
+
+.social-list .icon {
+    color: #9370db;
+    font-weight: bold;
+    min-width: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .contact-form {
+        max-width: 400px;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #fff;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(147, 112, 219, 0.3);
+    background: rgba(20, 20, 30, 0.5);
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    transition: all 0.3s ease;
+    width: 100%;
+    min-width: 300px;
+}
+
+@media (min-width: 768px) {
+    .form-group input,
+    .form-group textarea {
+        min-width: 400px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .form-group input,
+    .form-group textarea {
+        min-width: 500px;
+    }
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #9370db;
+    box-shadow: 0 0 10px rgba(147, 112, 219, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: clamp(120px, 50vh, 200px);
+}
+
+.contact-form .btn {
+    align-self: flex-end;
+    margin-top: 1rem;
+}
+.contact-form .btn:hover {
+    box-shadow: 0 8px 20px rgba(147, 112, 219, 0.4);
+}

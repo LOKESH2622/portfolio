@@ -1,0 +1,287 @@
+/* ==================== GLOBAL STYLES ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: url('../assets/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ==================== VIEWPORT/SCREEN CONTAINER ==================== */
+.pages-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    flex-direction: column;
+}
+
+.page-section {
+    width: 100%;
+    min-height: 100vh;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+}
+
+p {
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+.highlight {
+    color: #9370db;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 3rem 1.5rem;
+    margin: 0;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-content.btn {
+    align-self: flex-end;
+    margin-top: 1rem;
+}
+    
+
+@media (min-width: 480px) {
+    .container {
+        padding: 3rem 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 4rem 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 5rem 4rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        padding: 6rem 8rem;
+    }
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 2rem 0 1.5rem;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .section-header {
+        flex-direction: row;
+        align-items: center;
+        margin: 4rem 0 2rem;
+        gap: 0;
+    }
+}
+
+.section-title {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: #fff;
+    font-weight: 600;
+}
+
+.view-all {
+    color: #666666;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+}
+
+.view-all:hover {
+    color: #000000;
+}
+
+/* ==================== BUTTONS ==================== */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(135deg, #9370db, #1ee6d2);
+    color: #fff;
+    text-decoration: none;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(147, 112, 219, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-narrow {
+    padding: 0.4rem 0.6rem !important;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 0.75rem !important;
+    display: block;
+}
+
+/* ==================== GEOMETRIC SHAPES ==================== */
+.geometric-shape {
+    position: absolute;
+    border: 2px solid #9370db;
+    opacity: 0.6;
+}
+
+.dots {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    opacity: 0.5;
+}
+
+.dot {
+    width: 3px;
+    height: 3px;
+    background: #9370db;
+    border-radius: 50%;
+}
+
+/* ==================== GEOMETRIC SHAPES - RESPONSIVE ==================== */
+.geometric-shape {
+    position: absolute;
+    border: 2px solid #9370db;
+    opacity: 0.6;
+}
+
+.dots {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    opacity: 0.5;
+}
+
+.dot {
+    width: 3px;
+    height: 3px;
+    background: #9370db;
+    border-radius: 50%;
+}
+
+/* ==================== FIXED SECTION TITLE ==================== */
+.fixed-section-title {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.fixed-section-title.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.fixed-section-title .section-name {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 900;
+    color: #fff;
+    display: block;
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+
+/* Extra Small Devices (320px - 480px) */
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+    
+    body {
+        background-attachment: scroll;
+    }
+    
+    .view-all {
+        font-size: 12px;
+    }
+}
+
+/* Small Devices (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+/* Medium Devices (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Large Devices (1025px+) */
+@media (min-width: 1025px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+}

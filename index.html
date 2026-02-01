@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokesh - Web & Mobile developer </title>
+    
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="src/css/global.css">
+    <link rel="stylesheet" href="src/css/hero.css">
+    <link rel="stylesheet" href="src/css/projects.css">
+    <link rel="stylesheet" href="src/css/skills.css">
+    <link rel="stylesheet" href="src/css/about.css">
+    <link rel="stylesheet" href="src/css/contact.css">
+</head>
+<body>
+    <!-- FIXED SECTION TITLE -->
+    <div class="fixed-section-title" id="fixedSectionTitle">
+        <span class="section-name">Lokesh</span>
+    </div>
+
+    <div class="pages-container" id="pagesContainer">
+        <!-- PAGE 1: HERO -->
+        <div class="page-section" id="page-home">
+            <div id="hero"></div>
+        </div>
+        
+        <!-- PAGE 2: ABOUT -->
+        <div class="page-section" id="page-about-me">
+            <div id="about"></div>
+        </div>
+        
+        <!-- PAGE 3: PROJECTS/WORKS -->
+        <div class="page-section" id="page-works">
+            <div id="projects"></div>
+        </div>
+        
+        <!-- PAGE 4: SKILLS -->
+        <div class="page-section" id="page-skills">
+            <div id="skills"></div>
+        </div>
+        
+        <!-- PAGE 5: CONTACT -->
+        <div class="page-section" id="page-contacts">
+            <div id="contact"></div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION ICONS - GLOBAL NAVBAR -->
+    <div class="skill-icons">
+        <a href="#home" class="icon-link active" data-section="home" title="Home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10L12 3l9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>
+            </svg>
+        </a>
+        <a href="#about-me" class="icon-link" data-section="about-me" title="About">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21v-1a7 7 0 0 1 14 0v1"/>
+            </svg>
+        </a>
+        <a href="#works" class="icon-link" data-section="works" title="Code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+            </svg>
+        </a>
+        <a href="#skills" class="icon-link" data-section="skills" title="Skills">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9h12M6 9a6 6 0 0 0 0 12h12a6 6 0 0 0 0-12"/>
+                <circle cx="9" cy="15" r="1"/>
+                <circle cx="15" cy="15" r="1"/>
+            </svg>
+        </a>
+        <a href="#contacts" class="icon-link" data-section="contacts" title="Contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- COMPONENT LOADER SCRIPT -->
+    <script src="src/js/components-loader.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+/* ==================== ABOUT SECTION STYLES ==================== */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 60px;
+}
+
+.about-content h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.about-content p {
+    color: #b0b0c0;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-content p:first-of-type {
+    font-size: 18px;
+    color: #9370db;
+    margin-bottom: 30px;
+}
+
+.about-image {
+    position: relative;
+    height: 400px;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(50%);
+    border: 2px solid #9370db;
+}
+
+.about-image img:hover {
+    filter: grayscale(0%);
+    box-shadow: 0 0 20px rgba(147, 112, 219, 0.3);
+}
+
+/* ==================== CONTACT SECTION STYLES ==================== */
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .about {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-content h2 {
+        font-size: 24px;
+    }
+
+    .about-image {
+        height: 300px;
+    }
+}
