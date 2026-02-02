@@ -129,8 +129,13 @@ function navigateToPage(pageId) {
             
             const titleElement = fixedTitle.querySelector('.section-name');
             if (titleElement) {
-                titleElement.textContent = sectionNames[pageId] || pageId;
-                fixedTitle.classList.add('active');
+                // Hide title for home page, show for others
+                if (pageId === 'home') {
+                    fixedTitle.classList.remove('active');
+                } else {
+                    titleElement.textContent = sectionNames[pageId] || pageId;
+                    fixedTitle.classList.add('active');
+                }
             }
         }
         
