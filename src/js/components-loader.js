@@ -72,23 +72,6 @@ function initializeEventListeners() {
         });
     });
 
-    // Form submission handler
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                message: formData.get('message')
-            };
-            console.log('Form submitted:', data);
-            alert('Thank you for your message! I will get back to you soon.');
-            contactForm.reset();
-        });
-    }
-
     // Keyboard navigation (optional)
     document.addEventListener('keydown', function (e) {
         const pages = ['about-me', 'works', 'skills', 'contacts'];
