@@ -119,22 +119,18 @@ function navigateToPage(pageId) {
         
         // Update fixed section title
         if (fixedTitle) {
-            // Hide title for home page, show for other pages
-            if (pageId === 'home') {
-                fixedTitle.classList.remove('active');
-            } else {
-                const sectionNames = {
-                    'about-me': '#about-me',
-                    'works': '#projects',
-                    'skills': '#skills',
-                    'contacts': '#contact'
-                };
+            const sectionNames = {
                 
-                const titleElement = fixedTitle.querySelector('.section-name');
-                if (titleElement) {
-                    titleElement.textContent = sectionNames[pageId] || pageId;
-                    fixedTitle.classList.add('active');
-                }
+                'about-me': '#about-me',
+                'works': '#projects',
+                'skills': '#skills',
+                'contacts': '#contact'
+            };
+            
+            const titleElement = fixedTitle.querySelector('.section-name');
+            if (titleElement) {
+                titleElement.textContent = sectionNames[pageId] || pageId;
+                fixedTitle.classList.add('active');
             }
         }
         
