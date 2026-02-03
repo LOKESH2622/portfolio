@@ -6,16 +6,26 @@
 function initializeContactForm() {
   const contactForm = document.querySelector('.contact-form');
   
-  if (!contactForm) return;
+  if (!contactForm) {
+    console.warn('Contact form not found. Retrying...');
+    // Retry after a short delay if form doesn't exist yet
+    setTimeout(initializeContactForm, 500);
+    return;
+  }
+
+  console.log('✓ Contact form found and initializing...');
 
   contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
+    console.log('Form submitted');
 
     const formData = {
       name: document.getElementById('name').value.trim(),
       email: document.getElementById('email').value.trim(),
       message: document.getElementById('message').value.trim()
     };
+
+    console.log('Form data:', formData);
 
     // Validate form data
     if (!formData.name || !formData.email || !formData.message) {
@@ -30,6 +40,7 @@ function initializeContactForm() {
     submitBtn.textContent = 'Sending...';
 
     try {
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -38,7 +49,9 @@ function initializeContactForm() {
         body: JSON.stringify(formData)
       });
 
+      console.log('Response status:', response.status);
       const result = await response.json();
+      console.log('Response result:', result);
 
       if (response.ok && result.success) {
         showMessage('✓ Message sent successfully! I will get back to you soon.', 'success');
@@ -48,7 +61,7 @@ function initializeContactForm() {
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      showMessage('An error occurred. Please try again later.', 'error');
+      showMessage('Network error: Could not reach the server. Make sure the backend is running on http://localhost:3000', 'error');
     } finally {
       // Re-enable submit button
       submitBtn.disabled = false;
@@ -72,22 +85,50 @@ function showMessage(message, type = 'info') {
   // Create message element
   const messageDiv = document.createElement('div');
   messageDiv.className = `form-message form-message-${type}`;
-  messageDiv.textContent = message;
+  
+  // Create HTML with icon and message
+  if (type === 'success') {
+    messageDiv.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>${message}</span>
+      </div>
+    `;
+  } else {
+    messageDiv.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>${message}</span>
+      </div>
+    `;
+  }
+  
   messageDiv.style.cssText = `
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
     font-weight: 500;
+    font-size: 16px;
     animation: slideIn 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     ${type === 'success' 
-      ? 'background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;' 
-      : 'background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;'}
+      ? 'background-color: #d4edda; color: #000; border: 2px solid #28a745;' 
+      : 'background-color: #f8d7da; color: #721c24; border: 2px solid #dc3545;'}
   `;
 
   // Insert message before form
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
     contactForm.parentNode.insertBefore(messageDiv, contactForm);
+    
+    // Scroll to message
+    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   // Auto-remove success message after 5 seconds
@@ -97,12 +138,4 @@ function showMessage(message, type = 'info') {
       setTimeout(() => messageDiv.remove(), 300);
     }, 5000);
   }
-}
-
-// Initialize when components are loaded
-document.addEventListener('DOMContentLoaded', initializeContactForm);
-
-// Also initialize if called after components are already loaded
-if (document.querySelector('.contact-form')) {
-  initializeContactForm();
 }

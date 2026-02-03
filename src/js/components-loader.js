@@ -5,7 +5,6 @@
 
 // Define component paths
 const components = {
-    header: 'src/components/header.html',
     hero: 'src/components/hero.html',
     projects: 'src/components/projects.html',
     skills: 'src/components/skills.html',
@@ -58,6 +57,12 @@ async function loadAllComponents() {
  * Initialize event listeners and functionality
  */
 function initializeEventListeners() {
+    // Initialize contact form
+    if (typeof initializeContactForm === 'function') {
+        console.log('Initializing contact form...');
+        initializeContactForm();
+    }
+
     // Skill icon click handlers with page navigation
     const iconLinks = document.querySelectorAll('.icon-link');
     iconLinks.forEach(link => {
@@ -74,9 +79,18 @@ function initializeEventListeners() {
 
     // Keyboard navigation (optional)
     document.addEventListener('keydown', function (e) {
-        const pages = ['about-me', 'works', 'skills', 'contacts'];
-        const currentPage = document.querySelector('.page-section:in-viewport') || document.querySelector('.page-section');
-        const currentIndex = Array.from(document.querySelectorAll('.page-section')).indexOf(currentPage);
+        const pages = ['home', 'about-me', 'works', 'skills', 'contacts'];
+        
+        // Find currently visible page using getBoundingClientRect
+        const pageElements = document.querySelectorAll('.page-section');
+        let currentIndex = 0;
+        
+        pageElements.forEach((element, index) => {
+            const rect = element.getBoundingClientRect();
+            if (rect.top >= -rect.height / 2) {
+                currentIndex = index;
+            }
+        });
         
         if (e.key === 'ArrowRight' && currentIndex < pages.length - 1) {
             navigateToPage(pages[currentIndex + 1]);

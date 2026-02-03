@@ -17,6 +17,9 @@ app.use(express.static('./'));
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: process.env.EMAIL_SERVICE || 'gmail',
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT || 587,
+  secure: process.env.EMAIL_SECURE === 'true', // true for 465, false for other ports
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD
@@ -36,8 +39,11 @@ transporter.verify(function(error, success) {
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
+  console.log('📧 Contact form received:', { name, email });
+
   // Validation
   if (!name || !email || !message) {
+    console.log('❌ Validation failed: Missing fields');
     return res.status(400).json({ 
       success: false, 
       error: 'Please fill in all fields' 
@@ -47,6 +53,7 @@ app.post('/api/contact', async (req, res) => {
   // Email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
+    console.log('❌ Validation failed: Invalid email format');
     return res.status(400).json({ 
       success: false, 
       error: 'Please enter a valid email address' 
@@ -54,6 +61,7 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
+    console.log('📨 Sending email to:', process.env.RECIPIENT_EMAIL);
     // Email to your inbox
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
@@ -104,16 +112,18 @@ app.post('/api/contact', async (req, res) => {
       `
     });
 
+    console.log('✅ Email sent successfully to:', process.env.RECIPIENT_EMAIL);
     res.status(200).json({ 
       success: true, 
       message: 'Your message has been sent successfully!' 
     });
 
   } catch (error) {
-    console.error('Email sending error:', error);
+    console.error('❌ Email sending error:', error.message);
+    console.error('Full error:', error);
     res.status(500).json({ 
       success: false, 
-      error: 'Failed to send message. Please try again later.' 
+      error: 'Failed to send message. Please try again later. Error: ' + error.message 
     });
   }
 });
