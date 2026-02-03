@@ -35,11 +35,16 @@ body {
     width: 100%;
     min-height: 100vh;
     flex-shrink: 0;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     overflow-y: auto;
     scroll-behavior: smooth;
+}
+
+/* Show first page (home) by default */
+.page-section:first-child {
+    display: flex;
 }
 
 /* ==================== TYPOGRAPHY ==================== */

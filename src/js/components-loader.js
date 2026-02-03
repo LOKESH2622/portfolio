@@ -76,28 +76,6 @@ function initializeEventListeners() {
             this.classList.add('active');
         });
     });
-
-    // Keyboard navigation (optional)
-    document.addEventListener('keydown', function (e) {
-        const pages = ['home', 'about-me', 'works', 'skills', 'contacts'];
-        
-        // Find currently visible page using getBoundingClientRect
-        const pageElements = document.querySelectorAll('.page-section');
-        let currentIndex = 0;
-        
-        pageElements.forEach((element, index) => {
-            const rect = element.getBoundingClientRect();
-            if (rect.top >= -rect.height / 2) {
-                currentIndex = index;
-            }
-        });
-        
-        if (e.key === 'ArrowRight' && currentIndex < pages.length - 1) {
-            navigateToPage(pages[currentIndex + 1]);
-        } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
-            navigateToPage(pages[currentIndex - 1]);
-        }
-    });
 }
 
 /**
@@ -109,15 +87,18 @@ function navigateToPage(pageId) {
     const fixedTitle = document.getElementById('fixedSectionTitle');
     
     if (pageSection && pagesContainer) {
-        pageSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        // Hide all pages and show only the selected one
+        document.querySelectorAll('.page-section').forEach(page => {
+            page.style.display = 'none';
         });
+        pageSection.style.display = 'flex';
+        pageSection.style.flexDirection = 'column';
+        pageSection.style.justifyContent = 'center';
+        pageSection.style.alignItems = 'center';
         
         // Update fixed section title
         if (fixedTitle) {
             const sectionNames = {
-                
                 'about-me': '#about-me',
                 'works': '#projects',
                 'skills': '#skills',
