@@ -1,7 +1,6 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,8 +8,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Middleware - order matters!
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json()); // Use express.json() instead of body-parser
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./'));
 
 // Configure Nodemailer transporter

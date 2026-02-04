@@ -41,7 +41,7 @@ function initializeContactForm() {
 
     try {
       
-      const response = await fetch('/api/contact', {
+      const response = await fetch('http://localhost:3000/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -50,7 +50,17 @@ function initializeContactForm() {
       });
 
       console.log('Response status:', response.status);
-      const result = await response.json();
+      
+      let result;
+      const contentType = response.headers.get('content-type');
+      
+      // Check if response has JSON content
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
+      } else {
+        result = { error: `Server error: ${response.status} ${response.statusText}` };
+      }
+      
       console.log('Response result:', result);
 
       if (response.ok && result.success) {

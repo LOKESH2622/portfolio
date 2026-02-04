@@ -99,10 +99,10 @@ function navigateToPage(pageId) {
         // Update fixed section title
         if (fixedTitle) {
             const sectionNames = {
-                'about-me': '#about-me',
-                'works': '#projects',
-                'skills': '#skills',
-                'contacts': '#contact'
+                'about-me': 'About-me',
+                'works': 'Projects',
+                'skills': 'Skills',
+                'contacts': 'Contacts'
             };
             
             const titleElement = fixedTitle.querySelector('.section-name');
