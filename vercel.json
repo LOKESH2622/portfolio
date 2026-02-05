@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "framework": null,
+  "buildCommand": "npm install",
+  "outputDirectory": "./",
+  "devCommand": "node server.js",
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "env": {
+    "EMAIL_SERVICE": "@email_service",
+    "EMAIL_USER": "@email_user",
+    "EMAIL_PASSWORD": "@email_password",
+    "EMAIL_PORT": "@email_port",
+    "RECIPIENT_EMAIL": "@recipient_email",
+    "PORT": "3000"
+  }
+}
