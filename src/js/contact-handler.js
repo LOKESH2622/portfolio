@@ -40,8 +40,10 @@ function initializeContactForm() {
     submitBtn.textContent = 'Sending...';
 
     try {
+      // Use relative URL so it works on both localhost and production
+      const apiUrl = `${window.location.origin}/api/contact`;
       
-      const response = await fetch('http://localhost:3000/api/contact', {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -71,7 +73,7 @@ function initializeContactForm() {
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      showMessage('Network error: Could not reach the server. Make sure the backend is running on http://localhost:3000', 'error');
+      showMessage('Network error: Could not reach the server. Please try again.', 'error');
     } finally {
       // Re-enable submit button
       submitBtn.disabled = false;
