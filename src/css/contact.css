@@ -3,11 +3,12 @@
 .contact {
     width: 100%;
     min-height: 100vh;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: visible;
 }
 
 @media (min-width: 480px) {
@@ -30,7 +31,7 @@
 
 @media (min-width: 1440px) {
     .contact {
-        padding: 3rem 0;
+        padding: 3rem 2rem;
     }
 }
 
@@ -49,39 +50,38 @@
     gap: 2rem;
     align-items: center;
     width: 100%;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: visible;
 }
 
 @media (min-width: 480px) {
     .contact-content {
-        gap: 2.5rem;
-        padding: 0 1.5rem;
+        gap: 2rem;
     }
 }
 
 @media (min-width: 768px) {
     .contact-content {
-        gap: 3rem;
-        padding: 0 2rem;
+        gap: 2.5rem;
     }
 }
 
 @media (min-width: 1024px) {
     .contact-content {
         flex-direction: row;
-        gap: 4rem;
-        align-items: stretch;
+        gap: 2rem;
+        align-items: flex-start;
         justify-content: center;
-        padding: 0;
     }
 }
 
 @media (min-width: 1440px) {
     .contact-content {
-        max-width: 1000px;
-        gap: 6rem;
+        max-width: 1200px;
+        gap: 4rem;
     }
 }
 
@@ -93,28 +93,36 @@
     background: linear-gradient(135deg, rgba(20, 20, 30, 0.8) 0%, rgba(40, 30, 60, 0.6) 100%);
     border: 1px solid rgba(147, 112, 219, 0.3);
     border-radius: 16px;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
     width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    .profile-card-wrapper {
+        padding: 2rem;
+    }
 }
 
 @media (min-width: 1024px) {
     .profile-card-wrapper {
-        max-width: 400px;
+        max-width: 350px;
         margin: 0;
+        flex-shrink: 0;
     }
 }
 
 .profile-background {
     position: relative;
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .profile-circle {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 1.5rem;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem;
     border-radius: 50%;
     border: 4px solid rgba(147, 112, 219, 0.5);
     overflow: hidden;
@@ -122,6 +130,20 @@
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 768px) {
+    .profile-circle {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .profile-circle {
+        width: 150px;
+        height: 150px;
+    }
 }
 
 .profile-image {
@@ -133,7 +155,7 @@
 .profile-details {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .profile-details h3 {
@@ -154,24 +176,27 @@
 .contact-links {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-    text-align: center;
+    gap: 0.5rem;
+    text-align: left;
+    width: 100%;
 }
 
 .contact-links p {
-    font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
     color: #b0b0c0;
     margin: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
+    justify-content: flex-start;
+    gap: 0.6rem;
 }
 
 .contact-icon {
     color: #9370db;
-    font-weight: bold;
-    min-width: 1.2rem;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -256,11 +281,25 @@
     flex-direction: column;
     gap: 1.25rem;
     width: 100%;
+    max-width: 100%;
+    background: linear-gradient(135deg, rgba(20, 20, 30, 0.8) 0%, rgba(40, 30, 60, 0.6) 100%);
+    border: 1px solid rgba(147, 112, 219, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+@media (min-width: 768px) {
+    .contact-form {
+        padding: 2rem;
+    }
 }
 
 @media (min-width: 1024px) {
     .contact-form {
-        max-width: 400px;
+        max-width: 650px;
+        flex: 1;
     }
 }
 
@@ -286,21 +325,8 @@
     font-size: clamp(0.875rem, 2vw, 1rem);
     transition: all 0.3s ease;
     width: 100%;
-    min-width: 300px;
-}
-
-@media (min-width: 768px) {
-    .form-group input,
-    .form-group textarea {
-        min-width: 400px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .form-group input,
-    .form-group textarea {
-        min-width: 500px;
-    }
+    box-sizing: border-box;
+    border-radius: 8px;
 }
 
 .form-group input:focus,
@@ -312,7 +338,7 @@
 
 .form-group textarea {
     resize: vertical;
-    min-height: clamp(120px, 50vh, 200px);
+    min-height: 100px;
 }
 
 .contact-form .btn {
