@@ -1,0 +1,16 @@
+{
+  "sonarScan": {
+    "key": "lokesh-portfolio",
+    "name": "Lokesh Portfolio",
+    "projectBaseDir": ".",
+    "sources": [
+      "src"
+    ],
+    "exclusions": [
+      "**/node_modules/**",
+      "**/.git/**",
+      "**/dist/**",
+      "**/build/**"
+    ]
+  }
+}
