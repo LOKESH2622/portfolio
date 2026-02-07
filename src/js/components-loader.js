@@ -63,6 +63,9 @@ function initializeEventListeners() {
         initializeContactForm();
     }
 
+    // Initialize Read More functionality
+    initReadMore();
+
     // Skill icon click handlers with page navigation
     const iconLinks = document.querySelectorAll('.icon-link');
     iconLinks.forEach(link => {
@@ -75,6 +78,66 @@ function initializeEventListeners() {
             iconLinks.forEach(l => l.classList.remove('active'));
             this.classList.add('active');
         });
+    });
+}
+
+/**
+ * Initialize Read More button - toggles expanded content visibility
+ */
+function initReadMore() {
+    const readMoreBtn = document.getElementById('read-more-btn');
+    const expandedContainer = document.getElementById('about-expanded');
+    const aboutSection = document.getElementById('about-me');
+    
+    if (!readMoreBtn || !expandedContainer || !aboutSection) {
+        return;
+    }
+    
+    let isExpanded = false;
+    
+    function bindDidYouKnow() {
+        const toggle = document.getElementById('did-you-know-toggle');
+        const text = document.getElementById('did-you-know-text');
+        if (!toggle || !text) {
+            return;
+        }
+        toggle.addEventListener('click', () => {
+            text.classList.toggle('is-visible');
+        });
+    }
+
+    // Close expanded content
+    function closeExpanded() {
+        expandedContainer.classList.remove('visible');
+        aboutSection.classList.remove('hidden');
+        readMoreBtn.textContent = 'Read more →';
+        readMoreBtn.classList.remove('expanded');
+        isExpanded = false;
+    }
+    
+    // Button click handler
+    readMoreBtn.addEventListener('click', function() {
+        if (!isExpanded) {
+            // Show expanded content with smooth slide-down
+            expandedContainer.classList.add('visible');
+            aboutSection.classList.add('hidden');
+            readMoreBtn.textContent = 'Show less ←';
+            readMoreBtn.classList.add('expanded');
+            isExpanded = true;
+            
+            bindDidYouKnow();
+            
+            // Smooth scroll to expanded content after animation
+            setTimeout(() => {
+                expandedContainer.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 300);
+            
+        } else {
+            closeExpanded();
+        }
     });
 }
 

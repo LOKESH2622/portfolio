@@ -38,6 +38,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .project-card:hover {
@@ -48,13 +49,14 @@
 
 .project-image {
     width: 100%;
-    height: clamp(150px, 40vw, 250px);
+    height: 200px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
     .project-image {
-        height: 200px;
+        height: 220px;
     }
 }
 
@@ -79,6 +81,9 @@
 
 .project-info {
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .project-info h3 {
@@ -93,12 +98,14 @@
     font-size: clamp(0.8125rem, 2vw, 0.875rem);
     margin-bottom: 1rem;
     line-height: 1.5;
+    flex: 1;
 }
 
 .project-buttons {
     display: flex;
     gap: 0.625rem;
     flex-wrap: wrap;
+    margin-top: auto;
 }
 
 .project-btn {
@@ -114,11 +121,26 @@
     flex: 1;
     min-width: 70px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    width: 1.2em;
+    height: 1.2em;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
 }
 
 .project-btn:hover {
     background: #9370db;
     color: #1a1a2e;
+}
+
+.project-btn:hover .btn-icon {
+    transform: scale(1.1);
 }
 
 /* ==================== RESPONSIVE ==================== */

@@ -107,9 +107,12 @@
 
 @media (min-width: 1024px) {
     .profile-card-wrapper {
-        max-width: 350px;
+        width: 320px;
+        max-width: 320px;
+        min-width: 320px;
         margin: 0;
         flex-shrink: 0;
+        order: 1;
     }
 }
 
@@ -298,8 +301,70 @@
 
 @media (min-width: 1024px) {
     .contact-form {
-        max-width: 650px;
+        width: 320px;
+        max-width: 320px;
+        min-width: 320px;
+        flex-shrink: 0;
+        order: 3;
+    }
+}
+
+/* ==================== 3D MODEL CONTAINER ==================== */
+.contact-3d-model {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 250px;
+    order: 1;
+}
+
+.contact-3d-model canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 300px;
+    max-height: 300px;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .contact-3d-model {
+        min-height: 300px;
+    }
+    
+    .contact-3d-model canvas {
+        max-width: 350px;
+        max-height: 350px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contact-3d-model {
         flex: 1;
+        min-height: 400px;
+        max-width: 400px;
+        order: 2;
+    }
+    
+    .contact-3d-model canvas {
+        max-width: 400px;
+        max-height: 400px;
+    }
+    
+    .profile-card-wrapper {
+        order: 1;
+    }
+}
+
+@media (min-width: 1440px) {
+    .contact-3d-model {
+        max-width: 450px;
+        min-height: 450px;
+    }
+    
+    .contact-3d-model canvas {
+        max-width: 450px;
+        max-height: 450px;
     }
 }
 
