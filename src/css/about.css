@@ -83,15 +83,18 @@
 .about-expanded {
     max-height: 0;
     overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.6s ease, opacity 0.4s ease, margin 0.4s ease;
+    opacity: 0.5;
+    transition: max-height 0.7s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0.0, 0.2, 1), margin 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
     margin-bottom: 0;
+    will-change: max-height, opacity, margin;
+    pointer-events: none;
 }
 
 .about-expanded.visible {
-    max-height: 500px;
+    max-height: 1200px; /* Large enough for content, will animate smoothly */
     opacity: 1;
     margin-bottom: 20px;
+    pointer-events: auto;
 }
 
 .about-expanded p {
@@ -111,7 +114,7 @@
 }
 
 .read-more-btn.expanded {
-    background: rgba(147, 112, 219, 0.2);
+    background: rgba(0, 0, 0, 0.5);
 }
 
 /* ==================== TIMELINE MODAL ==================== */
@@ -446,11 +449,11 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(10, 0, 21, 0.98);
-    backdrop-filter: blur(20px);
-    border-bottom: 2px solid rgba(147, 112, 219, 0.3);
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
     padding: 2rem 3rem;
-    box-shadow: 0 4px 20px rgba(147, 112, 219, 0.15);
+    box-shadow: none;
 }
 
 .about-header h1 {
@@ -869,9 +872,7 @@
     transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
                 opacity 0.4s ease,
                 padding 0.6s ease;
-    background: linear-gradient(135deg, rgba(10, 0, 21, 0.95), rgba(26, 10, 46, 0.95)),
-                url('../assets/bg.png') center/cover;
-    background-attachment: fixed;
+    background: transparent;
     padding: 0;
 }
 
@@ -879,6 +880,7 @@
     max-height: 5000px;
     opacity: 1;
     padding: 5rem 3rem;
+    background: transparent;
     animation: slideDown 0.6s ease-out;
 }
 
@@ -1354,7 +1356,7 @@
 }
 
 #did-you-know-text {
-    display: none;
+    display: block;
     background: transparent;
     border: none;
     padding: 1.5rem 0;
@@ -1376,6 +1378,91 @@
     50% {
         transform: scale(1.1);
     }
+}
+
+/* ==================== TECH STACK SECTION ==================== */
+
+.tech-stack-section {
+    margin-top: 3rem;
+}
+
+.tech-stack-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: #ffffff;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.tech-stack-section h2 em {
+    font-style: italic;
+    color: #1ee6d2;
+}
+
+.tech-skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-start;
+}
+
+.tech-skill-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.tech-skill-item:hover {
+    border-color: #1ee6d2;
+    background: rgba(30, 230, 210, 0.1);
+    transform: translateY(-2px);
+}
+
+.tech-skill-item svg {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.tech-skill-item span {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* Show Less Button Container */
+.show-less-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.show-less-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.show-less-btn:hover {
+    border-color: #1ee6d2;
+    color: #1ee6d2;
+    background: rgba(30, 230, 210, 0.1);
+    transform: translateY(-2px);
 }
 
 /* Responsive for Extended Content */
@@ -1439,6 +1526,23 @@
     .philosophy-cards .card {
         padding: 2rem;
     }
+    
+    .tech-skills-grid {
+        gap: 0.75rem;
+    }
+    
+    .tech-skill-item {
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .tech-skill-item svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .tech-skill-item span {
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1474,5 +1578,26 @@
     
     .skills-showcase {
         padding: 1.5rem;
+    }
+    
+    .tech-skills-grid {
+        gap: 0.5rem;
+    }
+    
+    .tech-skill-item {
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .tech-skill-item svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .tech-skill-item span {
+        font-size: 0.8rem;
+    }
+    
+    .tech-stack-section h2 {
+        font-size: 1.5rem;
     }
 }

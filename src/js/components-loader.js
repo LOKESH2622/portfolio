@@ -88,6 +88,7 @@ function initReadMore() {
     const readMoreBtn = document.getElementById('read-more-btn');
     const expandedContainer = document.getElementById('about-expanded');
     const aboutSection = document.getElementById('about-me');
+    const fixedTitle = document.getElementById('fixedSectionTitle');
     
     if (!readMoreBtn || !expandedContainer || !aboutSection) {
         return;
@@ -108,33 +109,65 @@ function initReadMore() {
 
     // Close expanded content
     function closeExpanded() {
+        // Animate collapse by setting max-height to 0
+        expandedContainer.style.maxHeight = expandedContainer.scrollHeight + 'px';
+        // Force reflow to apply the new max-height before collapsing
+        void expandedContainer.offsetWidth;
+        expandedContainer.style.maxHeight = '0px';
         expandedContainer.classList.remove('visible');
         aboutSection.classList.remove('hidden');
         readMoreBtn.textContent = 'Read more →';
         readMoreBtn.classList.remove('expanded');
         isExpanded = false;
+
+        // Show fixed title again
+        if (fixedTitle) {
+            fixedTitle.classList.add('active');
+        }
+
+        // Scroll back to the about section after collapse
+        setTimeout(() => {
+            aboutSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 400);
+    }
+    
+    // Bind show less button inside expanded content
+    function bindShowLessBtn() {
+        const showLessBtn = document.getElementById('show-less-btn');
+        if (showLessBtn) {
+            showLessBtn.addEventListener('click', closeExpanded);
+        }
     }
     
     // Button click handler
     readMoreBtn.addEventListener('click', function() {
         if (!isExpanded) {
-            // Show expanded content with smooth slide-down
+            // Dynamically set max-height for smooth transition
+            expandedContainer.style.maxHeight = expandedContainer.scrollHeight + 'px';
             expandedContainer.classList.add('visible');
             aboutSection.classList.add('hidden');
             readMoreBtn.textContent = 'Show less ←';
             readMoreBtn.classList.add('expanded');
             isExpanded = true;
-            
+
+            // Hide the fixed "About Me" title
+            if (fixedTitle) {
+                fixedTitle.classList.remove('active');
+            }
+
             bindDidYouKnow();
-            
+            bindShowLessBtn();
+
             // Smooth scroll to expanded content after animation
             setTimeout(() => {
-                expandedContainer.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
+                expandedContainer.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
-            }, 300);
-            
+            }, 350);
         } else {
             closeExpanded();
         }
