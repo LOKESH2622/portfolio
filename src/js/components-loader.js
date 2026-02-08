@@ -94,8 +94,18 @@ function initReadMore() {
         return;
     }
     
-
     let isExpanded = false;
+    
+    function bindDidYouKnow() {
+        const toggle = document.getElementById('did-you-know-toggle');
+        const text = document.getElementById('did-you-know-text');
+        if (!toggle || !text) {
+            return;
+        }
+        toggle.addEventListener('click', () => {
+            text.classList.toggle('is-visible');
+        });
+    }
 
     // Close expanded content
     function closeExpanded() {
@@ -148,6 +158,7 @@ function initReadMore() {
                 fixedTitle.classList.remove('active');
             }
 
+            bindDidYouKnow();
             bindShowLessBtn();
 
             // Smooth scroll to expanded content after animation
