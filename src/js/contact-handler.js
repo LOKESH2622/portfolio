@@ -15,6 +15,19 @@ function initializeContactForm() {
 
   console.log('✓ Contact form found and initializing...');
 
+  // Add Enter key submit functionality to message textarea
+  const messageTextarea = document.getElementById('message');
+  if (messageTextarea) {
+    messageTextarea.addEventListener('keydown', function(e) {
+      // Submit form on Enter (without Shift)
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        contactForm.dispatchEvent(new Event('submit'));
+      }
+      // Shift+Enter allows new line (default behavior)
+    });
+  }
+
   contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     console.log('Form submitted');
