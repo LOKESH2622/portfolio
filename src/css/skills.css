@@ -102,7 +102,14 @@
     color: #b0b0c0;
     font-size: clamp(0.75rem, 2vw, 0.875rem);
     line-height: 1.8;
-    word-spacing: 0.1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-item {
+    white-space: nowrap;
+    display: inline-block;
 }
 
 /* Responsive breakpoints handled above in grid styles */
