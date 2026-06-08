@@ -65,6 +65,7 @@ function initializeEventListeners() {
 
     // Initialize Read More functionality
     initReadMore();
+    initProjectsAutoScroll();
 
     // Skill icon click handlers with page navigation
     const iconLinks = document.querySelectorAll('.icon-link');
@@ -79,6 +80,107 @@ function initializeEventListeners() {
             this.classList.add('active');
         });
     });
+}
+
+/**
+ * Auto-scroll projects horizontally, pausing while the user interacts with it.
+ */
+function initProjectsAutoScroll() {
+    const projectsGrid = document.querySelector('.projects-grid');
+    if (!projectsGrid || projectsGrid.dataset.autoScrollReady === 'true') {
+        return;
+    }
+
+    projectsGrid.dataset.autoScrollReady = 'true';
+    const projectCards = Array.from(projectsGrid.children);
+
+    projectCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.querySelectorAll('a, button').forEach(element => {
+            element.setAttribute('tabindex', '-1');
+        });
+        projectsGrid.appendChild(clone);
+    });
+
+    const allProjectCards = Array.from(projectsGrid.children);
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    let isPaused = false;
+    let previousTime = null;
+    const speed = 35;
+
+    function setPaused(value) {
+        isPaused = value;
+    }
+
+    projectsGrid.addEventListener('mouseover', event => {
+        if (event.target.closest('.project-card')) {
+            setPaused(true);
+        }
+    });
+    projectsGrid.addEventListener('mouseout', event => {
+        const nextElement = event.relatedTarget;
+
+        if (!nextElement || !nextElement.closest || !nextElement.closest('.project-card')) {
+            setPaused(false);
+        }
+    });
+    projectsGrid.addEventListener('focusin', () => setPaused(true));
+    projectsGrid.addEventListener('focusout', () => setPaused(false));
+    projectsGrid.addEventListener('touchstart', () => setPaused(true), { passive: true });
+    projectsGrid.addEventListener('touchend', () => setPaused(false));
+
+    function updateCardDepth() {
+        const gridRect = projectsGrid.getBoundingClientRect();
+        const gridCenter = gridRect.left + gridRect.width / 2;
+        const maxDistance = gridRect.width / 2;
+
+        allProjectCards.forEach(card => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = cardRect.left + cardRect.width / 2;
+            const distance = Math.max(-1, Math.min(1, (cardCenter - gridCenter) / maxDistance));
+            const depth = 1 - Math.min(1, Math.abs(distance));
+            const rotateY = distance * -24;
+            const scale = 0.88 + depth * 0.12;
+            const translateY = (1 - depth) * 18;
+            const opacity = 0.64 + depth * 0.36;
+
+            card.style.setProperty('--card-rotate-y', `${rotateY}deg`);
+            card.style.setProperty('--card-scale', scale.toFixed(3));
+            card.style.setProperty('--card-translate-y', `${translateY.toFixed(1)}px`);
+            card.style.setProperty('--card-opacity', opacity.toFixed(3));
+            card.style.zIndex = String(Math.round(depth * 10));
+        });
+    }
+
+    function autoScroll(currentTime) {
+        if (previousTime === null) {
+            previousTime = currentTime;
+        }
+
+        const elapsedSeconds = (currentTime - previousTime) / 1000;
+        previousTime = currentTime;
+        const loopWidth = projectCards.length > 0
+            ? projectsGrid.children[projectCards.length].offsetLeft - projectCards[0].offsetLeft
+            : 0;
+
+        if (!isPaused && loopWidth > 0) {
+            projectsGrid.scrollLeft += speed * elapsedSeconds;
+
+            if (projectsGrid.scrollLeft >= loopWidth) {
+                projectsGrid.scrollLeft -= loopWidth;
+            }
+        }
+
+        updateCardDepth();
+        requestAnimationFrame(autoScroll);
+    }
+
+    requestAnimationFrame(autoScroll);
 }
 
 /**
