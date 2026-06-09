@@ -66,6 +66,7 @@ function initializeEventListeners() {
     // Initialize Read More functionality
     initReadMore();
     initProjectsAutoScroll();
+    initTechRadarReveal();
 
     // Skill icon click handlers with page navigation
     const iconLinks = document.querySelectorAll('.icon-link');
@@ -80,6 +81,63 @@ function initializeEventListeners() {
             this.classList.add('active');
         });
     });
+}
+
+function initTechRadarReveal() {
+    const radar = document.querySelector('.tech-radar');
+    const items = Array.from(document.querySelectorAll('.tech-radar-item'));
+
+    if (!radar || items.length === 0 || radar.dataset.revealReady === 'true') {
+        return;
+    }
+
+    radar.dataset.revealReady = 'true';
+
+    const sweepDuration = 5500;
+    const sweepArc = 62;
+    const sweepStartOffset = 86;
+    const litLead = 4;
+    const previewLead = 20; // Zone where text shows before light reaches it
+
+    function toSweepAngle(pointX, pointY, centerX, centerY) {
+        const angle = Math.atan2(pointX - centerX, centerY - pointY) * 180 / Math.PI;
+        return (angle + 360) % 360;
+    }
+
+    function isAngleInSweep(angle, sweepStart, sweepEnd) {
+        if (sweepStart <= sweepEnd) {
+            return angle >= sweepStart && angle <= sweepEnd;
+        }
+
+        return angle >= sweepStart || angle <= sweepEnd;
+    }
+
+    function updateRadarLabels() {
+        const rect = radar.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const elapsed = performance.now() % sweepDuration;
+        const sweepStart = (sweepStartOffset + (elapsed / sweepDuration) * 360) % 360;
+        const sweepEnd = (sweepStart + sweepArc) % 360;
+        const activationStart = (sweepStart - litLead + 360) % 360;
+        const previewStart = (sweepStart - previewLead + 360) % 360;
+
+        items.forEach(item => {
+            const itemRect = item.getBoundingClientRect();
+            const itemX = itemRect.left + itemRect.width / 2;
+            const itemY = itemRect.top + itemRect.height / 2;
+            const itemAngle = toSweepAngle(itemX, itemY, centerX, centerY);
+            const isAboutToLight = isAngleInSweep(itemAngle, previewStart, activationStart);
+            const isLit = isAngleInSweep(itemAngle, activationStart, sweepEnd);
+
+            item.classList.toggle('is-lit', isLit);
+            item.classList.toggle('about-to-light', isAboutToLight && !isLit);
+        });
+
+        requestAnimationFrame(updateRadarLabels);
+    }
+
+    requestAnimationFrame(updateRadarLabels);
 }
 
 /**
